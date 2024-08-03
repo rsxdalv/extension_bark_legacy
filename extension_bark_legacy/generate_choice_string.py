@@ -1,5 +1,5 @@
-from extensions.builtin.extension_bark_legacy.create_voice_string import create_voice_string
-from extensions.builtin.extension_bark_legacy.get_speaker_gender import get_speaker_gender
+from extension_bark_legacy.create_voice_string import create_voice_string
+from extension_bark_legacy.get_speaker_gender import get_speaker_gender
 from typing import Union
 import gradio as gr
 

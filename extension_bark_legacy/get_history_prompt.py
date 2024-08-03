@@ -1,6 +1,6 @@
 from typing import Optional
-from extensions.builtin.extension_bark_legacy.history_to_hash import history_to_hash
-from extensions.builtin.extension_bark_legacy.create_voice_string import create_voice_string
+from extension_bark_legacy.history_to_hash import history_to_hash
+from extension_bark_legacy.create_voice_string import create_voice_string
 
 
 def get_history_prompt(

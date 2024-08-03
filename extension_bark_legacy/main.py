@@ -3,24 +3,24 @@ import shutil
 
 import numpy as np
 import gradio as gr
-from extensions.builtin.extension_bark_legacy.ICON_ELEM_CLASS import ICON_ELEM_CLASS
-from extensions.builtin.extension_bark_legacy.setup_seed_ui_bark import setup_seed_ui_bark
-from extensions.builtin.extension_bark_legacy.FinalGenParams import FinalGenParams
-from extensions.builtin.extension_bark_legacy.history_to_hash import history_to_hash
+from extension_bark_legacy.ICON_ELEM_CLASS import ICON_ELEM_CLASS
+from extension_bark_legacy.setup_seed_ui_bark import setup_seed_ui_bark
+from extension_bark_legacy.FinalGenParams import FinalGenParams
+from extension_bark_legacy.history_to_hash import history_to_hash
 from src.extensions_loader.ext_callback_save_generation import (
     ext_callback_save_generation,
 )
 from src.utils.create_base_filename import create_base_filename
 from src.history_tab.save_to_favorites import save_to_favorites
-from extensions.builtin.extension_bark_legacy.generate_and_save_metadata import generate_and_save_metadata
-from extensions.builtin.extension_bark_legacy.generate_choice_string import generate_choice_string
-from extensions.builtin.extension_bark_legacy.get_filenames import get_filenames
-from extensions.builtin.extension_bark_legacy.get_history_prompt import get_history_prompt
-from extensions.builtin.extension_bark_legacy.log_generation import log_generation
-from extensions.builtin.extension_bark_legacy.npz_tools import get_npz_files, load_npz, save_npz
-from extensions.builtin.extension_bark_legacy.parse_or_set_seed import parse_or_set_seed
-from extensions.builtin.extension_bark_legacy.split_text_functions import split_by_length_simple, split_by_lines
-from extensions.builtin.extension_bark_legacy.extended_generate import custom_generate_audio
+from extension_bark_legacy.generate_and_save_metadata import generate_and_save_metadata
+from extension_bark_legacy.generate_choice_string import generate_choice_string
+from extension_bark_legacy.get_filenames import get_filenames
+from extension_bark_legacy.get_history_prompt import get_history_prompt
+from extension_bark_legacy.log_generation import log_generation
+from extension_bark_legacy.npz_tools import get_npz_files, load_npz, save_npz
+from extension_bark_legacy.parse_or_set_seed import parse_or_set_seed
+from extension_bark_legacy.split_text_functions import split_by_length_simple, split_by_lines
+from extension_bark_legacy.extended_generate import custom_generate_audio
 from src.utils.date import get_date_string
 from bark import SAMPLE_RATE, generate_audio
 from scipy.io.wavfile import write as write_wav
@@ -29,7 +29,7 @@ from src.utils.save_waveform_plot import middleware_save_waveform_plot as save_w
 from src.model_manager import model_manager
 from src.config.config import config
 from src.utils.set_seed import set_seed
-from extensions.builtin.extension_bark_legacy.generation_settings import (
+from extension_bark_legacy.generation_settings import (
     HistorySettings,
     PromptSplitSettings,
     LongPromptHistorySettings,
@@ -622,7 +622,7 @@ def generation_tab_bark():
             # )
 
             # def clear_cache():
-            #     from extensions.builtin.extension_bark_legacy.extended_generate import semantic_cache
+            #     from extension_bark_legacy.extended_generate import semantic_cache
 
             #     semantic_cache.clear()
 

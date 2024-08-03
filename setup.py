@@ -10,7 +10,7 @@ setuptools.setup(
     project_urls={},
     scripts=[],
     install_requires=[
-        "audiocraft_apple_silicon @ git+https://github.com/rsxdalv/audiocraft@audiocraft_apple_silicon_ext",
+        # "suno-bark @ git+https://github.com/rsxdalv/bark@0d91823ead3d87c317f12d01d325fca9408c669e",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

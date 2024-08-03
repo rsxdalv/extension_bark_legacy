@@ -1,5 +1,5 @@
 import gradio as gr
-from extensions.builtin.extension_bark_legacy.ICON_ELEM_CLASS import ICON_ELEM_CLASS
+from extension_bark_legacy.ICON_ELEM_CLASS import ICON_ELEM_CLASS
 
 
 def setup_seed_ui_bark():

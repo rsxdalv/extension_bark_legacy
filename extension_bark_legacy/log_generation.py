@@ -1,4 +1,4 @@
-from extensions.builtin.extension_bark_legacy.FinalGenParams import FinalGenParams
+from extension_bark_legacy.FinalGenParams import FinalGenParams
 
 
 class LogGenerationParams(FinalGenParams):

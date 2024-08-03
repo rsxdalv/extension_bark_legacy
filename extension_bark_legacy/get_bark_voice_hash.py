@@ -1,9 +1,9 @@
 import hashlib
 import json
 from typing import Union
-# from extensions.builtin.extension_bark_legacy.history_to_hash import history_to_hash
-from extensions.builtin.extension_bark_legacy.npz_tools import load_npz
-from extensions.builtin.extension_bark_legacy.FullGeneration import FullGeneration
+# from extension_bark_legacy.history_to_hash import history_to_hash
+from extension_bark_legacy.npz_tools import load_npz
+from extension_bark_legacy.FullGeneration import FullGeneration
 import os
 
 

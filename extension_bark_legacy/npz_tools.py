@@ -1,7 +1,7 @@
 import glob
 from typing import Any
 import numpy as np
-from extensions.builtin.extension_bark_legacy.FullGeneration import FullGeneration
+from extension_bark_legacy.FullGeneration import FullGeneration
 import json
 import torch
 

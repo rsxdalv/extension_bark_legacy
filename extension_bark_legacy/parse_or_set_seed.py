@@ -1,5 +1,5 @@
 from typing import Union
-from extensions.builtin.extension_bark_legacy.generate_random_seed import generate_random_seed
+from extension_bark_legacy.generate_random_seed import generate_random_seed
 from src.utils.set_seed import set_seed
 
 
