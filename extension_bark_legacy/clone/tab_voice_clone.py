@@ -199,7 +199,7 @@ def tab_voice_clone(register_use_as_history_button):
                     hubert_model = None
                     tokenizer = None
                     torch.cuda.empty_cache()
-                    return gr.Button.update(
+                    return gr.Button(
                         value="Models cleared",
                     )
 

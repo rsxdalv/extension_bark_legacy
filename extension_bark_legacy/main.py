@@ -328,9 +328,9 @@ def generate_multi(count, outputs_ref):
             yield yield_generation(outputs_ref, i)(
                 audio=None,
                 image=None,
-                save_button=gr.Button.update(value="Save"),
-                continue_button=gr.Button.update(),
-                buttons_row=gr.Row.update(visible=False),
+                save_button=gr.Button(value="Save"),
+                continue_button=gr.Button(),
+                buttons_row=gr.Row(visible=False),
                 npz=None,
                 seed=None,
                 json_text=None,
@@ -358,9 +358,9 @@ def generate_multi(count, outputs_ref):
                 yield yield_generation(outputs_ref, i)(
                     audio=filename,
                     image=filename_png,
-                    save_button=gr.Button.update(value="Save"),
-                    continue_button=gr.Button.update(),
-                    buttons_row=gr.Row.update(visible=True),
+                    save_button=gr.Button(value="Save"),
+                    continue_button=gr.Button(),
+                    buttons_row=gr.Row(visible=True),
                     npz=filename_npz,
                     seed=seed,
                     json_text=metadata,
@@ -415,14 +415,14 @@ def generate_multi(count, outputs_ref):
                 )
                 pieces += [audio_array]
                 yield yield_generation(outputs_ref, i)(
-                    audio=gr.Audio.update(
+                    audio=gr.Audio(
                         value=filename,
                         label=f"Generated audio fragment... `{prompt_piece}`",
                     ),
                     image=filename_png,
-                    save_button=gr.Button.update(value="Save", visible=True),
-                    continue_button=gr.Button.update(visible=True),
-                    buttons_row=gr.Row.update(visible=True),
+                    save_button=gr.Button(value="Save", visible=True),
+                    continue_button=gr.Button(visible=True),
+                    buttons_row=gr.Row(visible=True),
                     npz=filename_npz,
                     seed=seed,
                     json_text=_metadata,
@@ -444,11 +444,11 @@ def generate_multi(count, outputs_ref):
             )
 
             yield yield_generation(outputs_ref, i)(
-                audio=gr.Audio.update(value=filename_long, label="Generated audio"),
+                audio=gr.Audio(value=filename_long, label="Generated audio"),
                 image=filename_png,
-                save_button=gr.Button.update(value="Save", visible=True),
-                continue_button=gr.Button.update(visible=True),
-                buttons_row=gr.Row.update(visible=True),
+                save_button=gr.Button(value="Save", visible=True),
+                continue_button=gr.Button(visible=True),
+                buttons_row=gr.Row(visible=True),
                 npz=filename_npz,
                 seed=seed,
                 json_text=metadata,
@@ -502,7 +502,7 @@ def generation_tab_bark():
         def unload_models():
             model_manager.unload_models()
             return {
-                unload_models_button: gr.Button.update(value="Unloaded"),
+                unload_models_button: gr.Button(value="Unloaded"),
             }
 
         unload_models_button.click(
@@ -519,7 +519,7 @@ def generation_tab_bark():
 
     # Show the language and speakerId radios only when useHistory is checked
     history_setting.change(
-        fn=lambda choice: gr.Column.update(
+        fn=lambda choice: gr.Column(
             visible=(choice == HistorySettings.VOICE)
         ),
         inputs=[history_setting],
@@ -540,9 +540,9 @@ def generation_tab_bark():
 
     history_setting.change(
         fn=lambda choice: [
-            gr.Dropdown.update(visible=(choice == HistorySettings.NPZ_FILE)),
-            gr.Button.update(visible=(choice == HistorySettings.NPZ_FILE)),
-            gr.Button.update(visible=(choice == HistorySettings.NPZ_FILE)),
+            gr.Dropdown(visible=(choice == HistorySettings.NPZ_FILE)),
+            gr.Button(visible=(choice == HistorySettings.NPZ_FILE)),
+            gr.Button(visible=(choice == HistorySettings.NPZ_FILE)),
         ],
         inputs=[history_setting],
         outputs=[
@@ -554,9 +554,9 @@ def generation_tab_bark():
 
     history_setting.change(
         fn=lambda choice: [
-            gr.Dropdown.update(visible=(choice == HistorySettings.NPZ_FILE)),
-            gr.Button.update(visible=(choice == HistorySettings.NPZ_FILE)),
-            gr.Button.update(visible=(choice == HistorySettings.NPZ_FILE)),
+            gr.Dropdown(visible=(choice == HistorySettings.NPZ_FILE)),
+            gr.Button(visible=(choice == HistorySettings.NPZ_FILE)),
+            gr.Button(visible=(choice == HistorySettings.NPZ_FILE)),
         ],
         inputs=[history_setting],
         outputs=[
@@ -695,7 +695,7 @@ def generation_tab_bark():
     total_columns = len(output_cols)
 
     def show(count):
-        return [gr.Column.update(visible=count > i) for i in range(total_columns)]
+        return [gr.Column(visible=count > i) for i in range(total_columns)]
 
     def generate_button(text, count, variant):
         button = gr.Button(text, variant=variant)
@@ -727,7 +727,7 @@ def generation_tab_bark():
     )
 
     set_old_seed_button.click(
-        fn=lambda x: gr.Textbox.update(value=str(x)),
+        fn=lambda x: gr.Textbox(value=str(x)),
         inputs=[seed_1],  # type: ignore
         outputs=[seed_input],
     )
@@ -766,7 +766,7 @@ def old_generation_dropdown_ui(label):
         )
 
         reload_old_generation_dropdown.click(
-            fn=lambda: gr.Dropdown.update(choices=get_npz_files()), # type: ignore
+            fn=lambda: gr.Dropdown(choices=get_npz_files()), # type: ignore
             outputs=old_generation_dropdown,
             # api_name=f"reload_old_generation_dropdown{ '' if label == 'Audio Voice' else '_semantic'}",
         )
@@ -808,8 +808,8 @@ def setup_bark_voice_prompt_ui():
 
 def insert_npz_file(npz_filename):
     return [
-        gr.Dropdown.update(value=npz_filename),
-        gr.Radio.update(value=HistorySettings.NPZ_FILE),
+        gr.Dropdown(value=npz_filename),
+        gr.Radio(value=HistorySettings.NPZ_FILE),
     ]
 
 
@@ -824,7 +824,7 @@ def create_components(
         audio = gr.Audio(
             type="filepath", label="Generated audio", elem_classes="tts-audio"
         )
-        image = gr.Image(label="Waveform", shape=(None, 100), elem_classes="tts-image")  # type: ignore
+        image = gr.Image(label="Waveform", elem_classes="tts-image")  # type: ignore
         with gr.Row(visible=False) as buttons_row:
             save_button = gr.Button("Save", size="sm")
             reuse_seed_button = gr.Button("Seed", size="sm")
@@ -849,7 +849,7 @@ def create_components(
         )
 
         reuse_seed_button.click(
-            fn=lambda x: gr.Textbox.update(value=str(x)),
+            fn=lambda x: gr.Textbox(value=str(x)),
             inputs=[seed],
             outputs=[seed_input],
         )
