@@ -7,7 +7,7 @@ from bark.generation import (
     load_codec_model,
 )
 from extension_bark_legacy.npz_tools import load_npz
-from src.config.config import config
+from tts_webui.config.config import config
 import numpy as np
 
 

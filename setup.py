@@ -3,7 +3,7 @@ import setuptools
 setuptools.setup(
     name="extension_bark_legacy",
     packages=setuptools.find_namespace_packages(),
-    version="0.0.2",
+    version="0.0.3",
     author="rsxdalv",
     description="This is the legacy UI of Bark from TTS-Generation-WebUI",
     url="https://github.com/rsxdalv/extension_bark_legacy",

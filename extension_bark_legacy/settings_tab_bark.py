@@ -1,9 +1,9 @@
 import os
 import gradio as gr
-from src.config.config import config
-from src.config.save_config_bark import save_config_bark
-from src.model_manager import model_manager
-from src.utils.setup_or_recover import generate_env
+from tts_webui.config.config import config
+from tts_webui.config.save_config_bark import save_config_bark
+from tts_webui.model_manager import model_manager
+from tts_webui.utils.setup_or_recover import generate_env
 
 
 def settings_tab_bark() -> None:
@@ -103,7 +103,7 @@ def settings_tab_bark() -> None:
                 )
                 os.environ["SUNO_ENABLE_MPS"] = str(environment_suno_enable_mps)
                 os.environ["SUNO_OFFLOAD_CPU"] = str(environment_suno_offload_cpu)
-                from src.utils.setup_or_recover import write_env
+                from tts_webui.utils.setup_or_recover import write_env
 
                 write_env(
                     generate_env(

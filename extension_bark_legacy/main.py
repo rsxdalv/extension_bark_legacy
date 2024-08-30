@@ -7,11 +7,8 @@ from extension_bark_legacy.ICON_ELEM_CLASS import ICON_ELEM_CLASS
 from extension_bark_legacy.setup_seed_ui_bark import setup_seed_ui_bark
 from extension_bark_legacy.FinalGenParams import FinalGenParams
 from extension_bark_legacy.history_to_hash import history_to_hash
-from src.extensions_loader.ext_callback_save_generation import (
-    ext_callback_save_generation,
-)
-from src.utils.create_base_filename import create_base_filename
-from src.history_tab.save_to_favorites import save_to_favorites
+from tts_webui.utils.create_base_filename import create_base_filename
+from tts_webui.history_tab.save_to_favorites import save_to_favorites
 from extension_bark_legacy.generate_and_save_metadata import generate_and_save_metadata
 from extension_bark_legacy.generate_choice_string import generate_choice_string
 from extension_bark_legacy.get_filenames import get_filenames
@@ -21,14 +18,14 @@ from extension_bark_legacy.npz_tools import get_npz_files, load_npz, save_npz
 from extension_bark_legacy.parse_or_set_seed import parse_or_set_seed
 from extension_bark_legacy.split_text_functions import split_by_length_simple, split_by_lines
 from extension_bark_legacy.extended_generate import custom_generate_audio
-from src.utils.date import get_date_string
+from tts_webui.utils.date import get_date_string
 from bark import SAMPLE_RATE, generate_audio
 from scipy.io.wavfile import write as write_wav
 from bark.generation import SUPPORTED_LANGS
-from src.utils.save_waveform_plot import middleware_save_waveform_plot as save_waveform_plot
-from src.model_manager import model_manager
-from src.config.config import config
-from src.utils.set_seed import set_seed
+from tts_webui.utils.save_waveform_plot import middleware_save_waveform_plot as save_waveform_plot
+from tts_webui.bark.BarkModelManager import bark_model_manager
+from tts_webui.config.config import config
+from tts_webui.utils.set_seed import set_seed
 from extension_bark_legacy.generation_settings import (
     HistorySettings,
     PromptSplitSettings,
@@ -40,7 +37,7 @@ def extension__tts_generation_webui():
     return {
         "package_name": "extension_bark_legacy",
         "name": "Bark Legacy",
-        "version": "0.0.1",
+        "version": "0.0.3",
         "requirements": "git+https://github.com/rsxdalv/extension_bark_legacy@main",
         "description": "This is the legacy UI of Bark from TTS-Generation-WebUI",
         "extension_type": "interface",
@@ -70,8 +67,8 @@ def generate(
     seed=None,
     index=0,
 ):
-    if not model_manager.models_loaded:
-        model_manager.reload_models(config)
+    if not bark_model_manager.models_loaded:
+        bark_model_manager.reload_models(config)
 
     use_voice = history_setting == HistorySettings.VOICE
     history_prompt, history_prompt_verbal = get_history_prompt(
@@ -174,17 +171,17 @@ def save_generation(
     )
     save_npz(filename_npz, full_generation, metadata)
 
-    ext_callback_save_generation(
-        full_generation,
-        audio_array,
-        {
-            "wav": filename,
-            "png": filename_png,
-            "npz": filename_npz,
-            "ogg": filename_ogg,
-        },
-        metadata,
-    )
+    # ext_callback_save_generation(
+    #     full_generation,
+    #     audio_array,
+    #     {
+    #         "wav": filename,
+    #         "png": filename_png,
+    #         "npz": filename_npz,
+    #         "ogg": filename_ogg,
+    #     },
+    #     metadata,
+    # )
 
     return filename, plot, filename_npz, metadata
 
@@ -239,17 +236,17 @@ def save_long_generation(
     )
     save_npz(filename_npz, full_generation, metadata)
 
-    ext_callback_save_generation(
-        full_generation,
-        audio_array,
-        {
-            "wav": filename,
-            "png": filename_png,
-            "npz": filename_npz,
-            "ogg": filename_ogg,
-        },
-        metadata,
-    )
+    # ext_callback_save_generation(
+    #     full_generation,
+    #     audio_array,
+    #     {
+    #         "wav": filename,
+    #         "png": filename_png,
+    #         "npz": filename_npz,
+    #         "ogg": filename_ogg,
+    #     },
+    #     metadata,
+    # )
 
     return filename, plot, filename_npz, metadata
 
@@ -500,7 +497,7 @@ def generation_tab_bark():
         )
 
         def unload_models():
-            model_manager.unload_models()
+            bark_model_manager.unload_models()
             return {
                 unload_models_button: gr.Button(value="Unloaded"),
             }

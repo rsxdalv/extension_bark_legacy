@@ -1,6 +1,6 @@
 from typing import Union
 from extension_bark_legacy.generate_random_seed import generate_random_seed
-from src.utils.set_seed import set_seed
+from tts_webui.utils.set_seed import set_seed
 
 
 def parse_or_generate_seed(seed: Union[str, int, None], index: int) -> int:
