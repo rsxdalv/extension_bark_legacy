@@ -23,7 +23,7 @@ from bark import SAMPLE_RATE, generate_audio
 from scipy.io.wavfile import write as write_wav
 from bark.generation import SUPPORTED_LANGS
 from tts_webui.utils.save_waveform_plot import middleware_save_waveform_plot as save_waveform_plot
-from tts_webui.bark.BarkModelManager import bark_model_manager
+from bark_model_manager.BarkModelManager import bark_model_manager
 from tts_webui.config.config import config
 from tts_webui.utils.set_seed import set_seed
 from extension_bark_legacy.generation_settings import (
@@ -37,7 +37,7 @@ def extension__tts_generation_webui():
     return {
         "package_name": "extension_bark_legacy",
         "name": "Bark Legacy",
-        "version": "0.0.3",
+        "version": "0.0.4",
         "requirements": "git+https://github.com/rsxdalv/extension_bark_legacy@main",
         "description": "This is the legacy UI of Bark from TTS-Generation-WebUI",
         "extension_type": "interface",
