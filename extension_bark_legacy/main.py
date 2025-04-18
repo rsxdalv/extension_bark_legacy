@@ -37,7 +37,7 @@ def extension__tts_generation_webui():
     return {
         "package_name": "extension_bark_legacy",
         "name": "Bark Legacy",
-        "version": "0.0.5",
+        "version": "0.0.6",
         "requirements": "git+https://github.com/rsxdalv/extension_bark_legacy@main",
         "description": "This is the legacy UI of Bark from TTS-Generation-WebUI",
         "extension_type": "interface",
